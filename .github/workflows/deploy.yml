@@ -1,45 +1,36 @@
-name: Hexo Auto Deploy  # 工作流名称
+name: Hexo Auto Deploy
 
-# 触发条件：当源码仓库的 main 分支有 push 或 pull_request 时执行
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]  # 触发部署的源分支，可根据实际修改
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # 运行环境（使用 GitHub 提供的 Ubuntu 服务器）
-    
+    runs-on: ubuntu-latest
+
     steps:
-      # 步骤 1：检出源码仓库的代码
-      - name: Checkout Source
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true  # 若使用主题子模块需开启
-          
-      # 步骤 2：安装 Node.js 环境（版本与本地一致，如 20.x）
+          submodules: true  # 如果有子模块，设为 true
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'  # 缓存 npm 依赖，加速构建
-          
-      # 步骤 3：安装 Hexo 依赖并编译静态页面
+          node-version: '18'  # Node.js 版本，可根据需要调整
+
       - name: Install Dependencies & Build
         run: |
-          npm install -g hexo-cli  # 安装 Hexo 脚手架
-          npm install              # 安装项目依赖
-          hexo clean               # 清理旧的编译产物
-          hexo generate            # 编译生成新的静态页面（输出到 public 目录）
-          
-      # 步骤 4：将编译后的静态页面推送到部署仓库
+          npm install -g hexo-cli
+          npm install
+          hexo clean
+          hexo generate
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4  # 第三方部署 Action，简化流程
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          # 部署仓库地址：替换为你的部署仓库（用户名.github.io）
-          deploy_repository: wanglong919191/wanglong919191.github.io
-          github_token: ${{ secrets.GH_TOKEN }}  # 引用之前配置的密钥
-          publish_dir: ./public  # 待部署的静态文件目录（Hexo 编译结果）
-          publish_branch: main   # 部署仓库的目标分支（默认 main 或 master）
-          commit_message: ${{ github.event.head_commit.message }}  # 提交信息同步源码提交
+          deploy_key: ${{ secrets.DEPLOY_KEY }}  # 部署密钥，需在仓库 Secrets 中配置
+          publish_dir: ./public  # Hexo 生成的静态文件目录
+          external_repository: wanglong919191/wanglong919191.github.io  # 替换为你的 GitHub Pages 仓库
+          publish_branch: gh-pages  # 发布到的分支，GitHub Pages 通常用 gh-pages
+          commit_message: ${{ github.event.head_commit.message }}
