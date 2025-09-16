@@ -1,0 +1,78 @@
+# ==============================
+# 1. Node.js 依赖包（核心忽略项）
+# ==============================
+# npm 安装的所有依赖包，体积大且可通过 package.json 重新安装
+node_modules/
+# yarn 依赖包目录（若使用 yarn 替代 npm，需保留此项）
+yarn.lock
+yarn-error.log
+# pnpm 依赖包目录（若使用 pnpm，需保留此项）
+pnpm-lock.yaml
+node_modules/.pnpm/
+
+# ==============================
+# 2. Hexo 编译与部署产物（核心忽略项）
+# ==============================
+# Hexo 编译后的静态页面目录（`hexo g` 生成，部署目标）
+public/
+# Hexo 部署时生成的临时目录（如使用 `hexo deploy` 命令时创建）
+.deploy_git/
+# 部分 Hexo 主题或插件生成的临时编译文件
+.dccache/
+.eslintcache/
+
+# ==============================
+# 3. 日志与缓存文件
+# ==============================
+# Hexo 运行日志
+logs/
+# 系统级缓存文件
+.DS_Store          # macOS 系统自动生成的隐藏文件
+Thumbs.db          # Windows 系统自动生成的缩略图缓存
+ehthumbs.db        # Windows 图片预览缓存
+Desktop.ini        # Windows 目录配置文件
+$RECYCLE.BIN/      # Windows 回收站目录（若项目在本地回收站路径下需注意）
+
+# ==============================
+# 4. 编辑器/IDE 配置文件
+# ==============================
+# Visual Studio Code（最常用编辑器，按需保留）
+.vscode/
+!.vscode/extensions.json  # 例外：若需共享插件推荐列表，可取消注释此句
+!.vscode/settings.json    # 例外：若需共享编辑器配置，可取消注释此句
+*.code-workspace          # VS Code 工作区文件
+
+# WebStorm/IntelliJ IDEA（JetBrains 系列 IDE）
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+.sublime-project
+.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+.DS_Store?
+
+# ==============================
+# 5. 环境变量与敏感配置（可选）
+# ==============================
+# 若项目中有自定义环境变量文件（如 API 密钥、私钥等），需添加在此处
+.env
+.env.local
+.env.*.local
+private.key
+
+# ==============================
+# 6. 其他临时文件
+# ==============================
+# 压缩包/备份文件
+*.zip
+*.tar.gz
+*.bak
+# 编译过程中产生的临时文件
+*.tmp
+*.temp
