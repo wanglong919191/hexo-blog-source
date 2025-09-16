@@ -3,9 +3,9 @@ name: Hexo Auto Deploy  # 工作流名称
 # 触发条件：当源码仓库的 main 分支有 push 或 pull_request 时执行
 on:
   push:
-    branches: [ gh-pages ]
+    branches: [ main ]
   pull_request:
-    branches: [ gh-pages ]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -41,5 +41,5 @@ jobs:
           deploy_repository: wanglong919191/wanglong919191.github.io
           github_token: ${{ secrets.GH_TOKEN }}  # 引用之前配置的密钥
           publish_dir: ./public  # 待部署的静态文件目录（Hexo 编译结果）
-          publish_branch: gh-pages   # 部署仓库的目标分支（默认 main 或 master）
+          publish_branch: main   # 部署仓库的目标分支（默认 main 或 master）
           commit_message: ${{ github.event.head_commit.message }}  # 提交信息同步源码提交
