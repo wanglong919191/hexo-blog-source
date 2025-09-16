@@ -29,7 +29,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}  # 部署密钥，需在仓库 Secrets 中配置
+          deploy_key: ${{ secrets.GH_TOKEN }}  # 部署密钥，需在仓库 Secrets 中配置
           publish_dir: ./public  # Hexo 生成的静态文件目录
           external_repository: wanglong919191/wanglong919191.github.io  # 替换为你的 GitHub Pages 仓库
           publish_branch: gh-pages  # 发布到的分支，GitHub Pages 通常用 gh-pages
