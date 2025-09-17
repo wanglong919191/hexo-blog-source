@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub token 进行身份验证
+          github_token: ${{ secrets.GH_TOKEN }}  # 使用 GitHub token 进行身份验证
           publish_dir: ./public  # Hexo 默认将构建的静态文件放在 ./public 目录
           target_branch: main  # 部署到目标仓库的 main 分支
           repository: wanglonggod/wanglonggod.github.io  # 部署仓库的名称
