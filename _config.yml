@@ -100,5 +100,7 @@ theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy: ssh
-  type: ''
+deploy:
+  type: git
+  repository: git@github.com:wanglonggod/wanglonggod.github.io.git
+  branch: gh-pages 
