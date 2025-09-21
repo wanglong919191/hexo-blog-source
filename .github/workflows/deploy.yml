@@ -31,5 +31,5 @@ jobs:
         with:
           deploy_key: ${{ secrets.SDEPLOY_KEY }}
           publish_dir: ./public
-          publish_branch: main
+          publish_branch: gh-pages
           external_repository: wanglonggod/wanglonggod.github.io
